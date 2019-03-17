@@ -1,0 +1,1 @@
+Simple runner for birthdays email reminder

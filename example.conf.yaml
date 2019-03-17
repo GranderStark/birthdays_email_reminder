@@ -1,0 +1,14 @@
+db:
+  url: 'sqlite:///birthdays.sqlite3'
+
+
+schedule_time: '10:00'
+
+email:
+  login: ''      # 'admin@eample.com'
+  password: ''   # 'passwd'
+  address: ''    # 'smtp.gmail.com'
+  port: 465
+
+scheduling:
+  first_reminder: 7
