@@ -44,7 +44,7 @@ class ReminderProcesor:
         b_day_users = self.get_nearest_birthday_user(users, b_date)
 
         recipients = self.get_recipients(users, b_day_users)
-        supervisor = self.get_first_supervisor(recipients)
+        supervisor = self.get_first_supervisor(recipients, b_day_users)
         if supervisor and recipients and b_day_users:
             b_day_names = ', '.join([u.fio for u in b_day_users])
             subject = FIRST_REMINDER_SUBJECT.format(b_day_names=b_day_names)
@@ -78,10 +78,10 @@ class ReminderProcesor:
         server.sendmail(sent_from, to, msg.as_string())
         server.close()
 
-    def get_first_supervisor(self, queryset):
+    def get_first_supervisor(self, queryset, b_day_users):
         res = None
         for u in queryset:
-            if u.is_supervisor:
+            if u.is_supervisor and u not in b_day_users:
                 res = u
                 break
         return res
